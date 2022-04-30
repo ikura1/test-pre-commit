@@ -1,7 +1,21 @@
-for i in range(1, 10):
-    text = ""
-    if i % 3 == 0:
-        text += "Fizz"
-    if i % 5 == 0:
-        text += "Buzz"
-    print(text or i)
+import random
+
+import click
+
+from fizzbuzz import fizzbuzz as fb
+
+
+@click.command()
+@click.option(
+    "--num",
+    "-n",
+    default=lambda: random.randint(1, 100),
+    type=int,
+    help="Number of loop",
+)
+def fizzbuzz(num: int):
+    fb(num)
+
+
+if __name__ == "__main__":
+    fizzbuzz()
